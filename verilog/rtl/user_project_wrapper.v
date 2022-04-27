@@ -1,17 +1,14 @@
-// SPDX-FileCopyrightText: 2020 Efabless Corporation
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-// SPDX-License-Identifier: Apache-2.0
+/*
+ *-------------------------------------------------------------
+ *
+ * A wrapper for the FPGA IP to fit the I/O interface of Caravel SoC
+ *
+ * The wrapper is a technology mapped netlist where the mode-switch
+ * multiplexers are mapped to the Skywater 130nm
+ * High-Density (HD) standard cells
+ *
+ *-------------------------------------------------------------
+ */
 
 `default_nettype none
 /*
@@ -29,9 +26,11 @@
  *-------------------------------------------------------------
  */
 
+`define MPRJ_IO_PADS 38
+
 module user_project_wrapper #(
     parameter BITS = 32
-) (
+)(
 `ifdef USE_POWER_PINS
     inout vdda1,	// User area 1 3.3V supply
     inout vdda2,	// User area 2 3.3V supply
@@ -68,25 +67,21 @@ module user_project_wrapper #(
     // Analog (direct connection to GPIO pad---use with caution)
     // Note that analog I/O is not available on the 7 lowest-numbered
     // GPIO pads, and so the analog_io indexing is offset from the
-    // GPIO indexing by 7 (also upper 2 GPIOs do not have analog_io).
+    // GPIO indexing by 7.
     inout [`MPRJ_IO_PADS-10:0] analog_io,
 
     // Independent clock (on independent integer divider)
     input   user_clock2,
 
-    // User maskable interrupt signals
     output [2:0] user_irq
 );
 
-/*--------------------------------------*/
-/* User project is instantiated  here   */
-/*--------------------------------------*/
 
-user_proj_example mprj (
-`ifdef USE_POWER_PINS
+    aes_wrapper aes_uut(
+    `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
-`endif
+    `endif
 
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
@@ -116,8 +111,8 @@ user_proj_example mprj (
 
     // IRQ
     .irq(user_irq)
-);
+        
+    );
 
-endmodule	// user_project_wrapper
+endmodule
 
-`default_nettype wire

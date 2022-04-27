@@ -24,5 +24,17 @@
     `include "gl/user_proj_example.v"
 `else
     `include "user_project_wrapper.v"
-    `include "user_proj_example.v"
+    //aes core
+    `include "AES/AES_CORE.v"
+    `include "AES/AES_CTRL.v"
+    `include "AES/AES_DP.v"
+    `include "AES/AES_TOP.v"
+    //submodule
+    `include "SUBMODULE/key_gen.v"
+    `include "SUBMODULE/mixcolumn.v"
+    `include "SUBMODULE/sbox.v"
+    `include "SUBMODULE/shiftrow.v"
+    `include "SUBMODULE/subbytes.v"
+    //parts
+    `include "PARTS/dff_reg.v"
 `endif

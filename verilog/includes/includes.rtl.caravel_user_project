@@ -1,5 +1,16 @@
 # Caravel user project includes
 -v $(USER_PROJECT_VERILOG)/rtl/user_project_wrapper.v	     
--v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
+#-v $(USER_PROJECT_VERILOG)/rtl/user_proj_example.v
 
- 
+-v $(USER_PROJECT_VERILOG)/rtl/AES/AES_CORE.v
+-v $(USER_PROJECT_VERILOG)/rtl/AES/AES_CTRL.v
+-v $(USER_PROJECT_VERILOG)/rtl/AES/AES_DP.v
+-v $(USER_PROJECT_VERILOG)/rtl/AES/AES_TOP.v
+#submodule
+-v $(USER_PROJECT_VERILOG)/rtl/SUBMODULE/key_gen.v
+-v $(USER_PROJECT_VERILOG)/rtl/SUBMODULE/mixcolumn.v
+-v $(USER_PROJECT_VERILOG)/rtl/SUBMODULE/sbox.v
+-v $(USER_PROJECT_VERILOG)/rtl/SUBMODULE/shiftrow.v
+-v $(USER_PROJECT_VERILOG)/rtl/SUBMODULE/subbytes.v
+#parts
+-v $(USER_PROJECT_VERILOG)/rtl/PARTS/dff_reg.v
