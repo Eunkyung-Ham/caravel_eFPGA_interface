@@ -34,4 +34,4 @@ Users who do not know much about eFPGA can also make low price, high density, sm
 Eunkyung Ham, M.S student of EWHA woman's University.
 Yujin Jeon, M.S student of EWHA woman's University.
 Jaeyun Lim, M.S student of EWHA woman's University.
-Sohyun Kim, Researcher of Digital System Architecture Lab.
+Sohyeon Kim, Researcher of Digital System Architecture Lab.
